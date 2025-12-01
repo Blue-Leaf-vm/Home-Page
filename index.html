@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- 폰트어썸 아이콘을 사용하기 위해 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="assets/pretendard.css">
     <title>새 탭</title>
 </head>
@@ -12,6 +14,7 @@
     <div id="item-box">
         <div id="search-box">
             <input type="text" id="search-input" placeholder="검색어를 입력하세요" autocomplete="off">
+            <div id="search-engine-display" class="shadowed"></div>
         </div>
         <div id="item">
             <div id="time">
@@ -22,6 +25,71 @@
         </div>
         <p id="tip" class="shadowed"></p>
     </div>
+
+    <!-- 설정 버튼 (우측 하단) -->
+    <button id="settings-btn" title="설정 열기" class="shadowed">
+        <i class="fas fa-cog"></i>
+    </button>
+
+    <!-- 설정 모달 -->
+    <div id="settings-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <h2><i class="fas fa-cog"></i> 설정</h2>
+            <div class="settings-sections">
+                
+                <!-- 배경 설정 섹션 -->
+                <div class="setting-section">
+                    <h3>배경 설정</h3>
+                    <div class="setting-row">
+                        <label for="bg-color-picker">배경 색상:</label>
+                        <input type="color" id="bg-color-picker" value="#000000">
+                    </div>
+                    <div class="setting-row">
+                        <label>이미지 배경:</label>
+                        <button id="changeBackgroundBtn" class="action-btn">이미지 추가/변경</button>
+                        <button id="resetBackgroundBtn" class="action-btn red-btn">이미지 초기화</button>
+                    </div>
+                    <div class="setting-row">
+                        <label for="blurToggle">시계/검색창 블러 효과:</label>
+                        <input type="checkbox" id="blurToggle">
+                    </div>
+                    <div class="setting-row">
+                        <label for="tipToggle">하단 팁 표시:</label>
+                        <input type="checkbox" id="tipToggle">
+                    </div>
+                </div>
+
+                <!-- 검색엔진 설정 섹션 -->
+                <div class="setting-section">
+                    <h3>검색엔진 설정</h3>
+                    <p class="desc">엔진 이름을 입력하고 URL 템플릿에 `(query)`를 넣어주세요. (예: `https://www.google.com/search?q=(query)`)<br>나무위키 문서 검색은 URL 끝에 검색어가 바로 붙습니다. (예: `https://namu.wiki/w/`)
+                    </p>
+                    <div id="search-engines-list">
+                        <!-- 검색엔진 목록이 여기에 렌더링됩니다. -->
+                    </div>
+                    <div class="setting-row engine-add-row">
+                        <input type="text" id="new-engine-name" placeholder="엔진 이름">
+                        <input type="text" id="new-engine-url" placeholder="URL 템플릿">
+                        <button id="add-engine-btn" class="action-btn green-btn">추가</button>
+                    </div>
+                </div>
+
+                <!-- 데이터 관리 섹션 -->
+                <div class="setting-section">
+                    <h3>데이터 관리 (설정 내보내기/불러오기)</h3>
+                    <p class="desc">현재 설정(배경색, 엔진 목록 등)을 ZIP 파일로 내보내거나 불러올 수 있습니다. (배경 이미지 파일은 포함되지 않습니다.)</p>
+                    <div class="setting-row">
+                        <button id="export-settings-btn" class="action-btn">설정 내보내기</button>
+                        <button id="import-settings-btn" class="action-btn">설정 불러오기</button>
+                        <input type="file" id="import-file-input" accept=".zip" style="display:none;">
+                    </div>
+                </div>
+
+            </div>
+            <button id="close-modal-btn" class="close-btn">닫기</button>
+        </div>
+    </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="code.js"></script>
 </html>

@@ -1,5 +1,6 @@
 * {
     user-select: none;
+    box-sizing: border-box; /* 추가: padding/border가 width/height에 포함되도록 */
 }
 
 p {
@@ -15,6 +16,7 @@ body, html {
     padding: 0;
     height: 100%;
     width: 100%;
+    overflow: hidden; /* 스크롤 방지 */
 }
 
 #background {
@@ -26,6 +28,7 @@ body, html {
     background-size: cover;
     background-position: center;
     z-index: -1;
+    transition: background-color 0.5s ease;
 }
 
 #item-box {
@@ -46,6 +49,9 @@ body, html {
 #search-box {
     position: relative;
     top: -40px;
+    display: flex; /* 검색창과 엔진 표시를 나란히 */
+    flex-direction: column;
+    align-items: center;
 }
 
 #search-input {
@@ -80,6 +86,24 @@ body, html {
 
 #search-input:focus::placeholder {
     color: #666;
+}
+
+#search-engine-display {
+    color: #fff;
+    font-size: 14px;
+    margin-top: 8px;
+    padding: 4px 10px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    min-width: 150px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#search-engine-display.highlighted {
+    background-color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
 }
 
 #item {
@@ -118,4 +142,268 @@ body, html {
 
 .shadowed {
     text-shadow: 0 0 5px #0006;
+}
+
+/* ===================================================================================
+   설정 버튼 및 모달 스타일
+   =================================================================================== */
+#settings-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 1000;
+}
+
+#settings-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg);
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    color: #333;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.modal-backdrop.visible .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-top: 0;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.modal-content h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-left: 4px solid #4CAF50;
+    color: #555;
+}
+
+.setting-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.setting-row:last-child {
+    border-bottom: none;
+}
+
+.setting-row label {
+    font-weight: 500;
+}
+
+.setting-row input[type="color"] {
+    border: none;
+    width: 40px;
+    height: 25px;
+    padding: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.setting-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.action-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+.red-btn {
+    background-color: #dc3545;
+}
+.red-btn:hover {
+    background-color: #c82333;
+}
+
+.green-btn {
+    background-color: #28a745;
+}
+.green-btn:hover {
+    background-color: #1e7e34;
+}
+
+/* 검색엔진 목록 스타일 */
+#search-engines-list {
+    margin-top: 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.engine-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    background-color: #f8f8f8;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    font-size: 14px;
+}
+
+.engine-item.selected {
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.engine-item span {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+}
+
+.engine-item .delete-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+.engine-add-row input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1;
+    margin-right: 10px;
+}
+.engine-add-row {
+    margin-top: 15px;
+    display: flex;
+}
+.engine-add-row input[type="text"]:first-child {
+    flex: 0.5;
+}
+.engine-add-row input[type="text"]:nth-child(2) {
+    flex: 1.5;
+}
+
+
+.desc {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+    padding: 0;
+    line-height: 1.4;
+    text-shadow: none;
+}
+
+.close-btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6c757d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.close-btn:hover {
+    background-color: #5a6268;
+}
+
+/* 반응형 디자인: 모바일 환경 */
+@media (max-width: 768px) {
+    #hm {
+        font-size: 100px;
+    }
+    #s {
+        font-size: 50px;
+    }
+    #date {
+        font-size: 20px;
+    }
+    #search-input {
+        width: 80vw;
+        min-width: unset;
+    }
+    .modal-content {
+        padding: 20px;
+    }
+    .engine-add-row {
+        flex-direction: column;
+    }
+    .engine-add-row input[type="text"] {
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+    .engine-add-row button {
+        width: 100%;
+    }
 }
