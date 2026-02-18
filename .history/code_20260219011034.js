@@ -188,7 +188,6 @@ function applyTipVisibility() {
     const tip = document.getElementById('tip');
     if (tip) {
         tip.style.display = config.tip ? 'block' : 'none';
-        // 브라우저 이용 관련 랜덤 팁 21개 TIP: + 1개 TMI: 내용
         const tips = [
             "TIP: 즐겨찾기 단축키는 Ctrl + D 입니다.",
             "TIP: 새 탭을 열려면 Ctrl + T 를 누르세요.",
@@ -209,9 +208,7 @@ function applyTipVisibility() {
             "TIP: 팝업 차단 설정을 확인하여 원치 않는 팝업을 방지하세요.",
             "TIP: 브라우저에서 자동 완성 기능을 사용하여 양식을 빠르게 작성하세요.",
             "TIP: 브라우저의 개발자 도구를 열려면 F12 키를 누르세요.",
-            "TIP: 페이지의 전체 내용을 캡처하려면 스크린샷 도구를 사용하세요.",
-            "TIP: 검색엔진을 전환하려면 검색박스에서 위쪽, 아래쪽 화살표를 누르세요.",
-            "TMI: 설정은 yure0211이 만들었습니다. 알아달라고요."
+            "TIP: 페이지의 전체 내용을 캡처하려면 스크린샷 도구를 사용하세요."
         ];
         tip.textContent = tips[Math.floor(Math.random() * tips.length)];
     }

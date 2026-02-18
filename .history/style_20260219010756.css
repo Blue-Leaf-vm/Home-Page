@@ -447,16 +447,6 @@ body, html {
     background-color: #5a6268;
 }
 
-/* [추가] 크레딧 스타일 */
-.credits {
-    text-align: center;
-    font-size: 10px;
-    color: #aaa;
-    margin-top: 20px;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
-}
-
 /* 반응형 디자인: 모바일 환경 */
 @media (max-width: 768px) {
     #hm {
