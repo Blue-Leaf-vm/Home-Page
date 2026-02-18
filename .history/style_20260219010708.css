@@ -264,71 +264,6 @@ body, html {
     cursor: pointer;
 }
 
-/* [추가] 이미지 관리 그리드 스타일 */
-#image-manage-area {
-    margin-top: 15px;
-    border: 1px solid #eee;
-    padding: 10px;
-    border-radius: 8px;
-    background: #f9f9f9;
-}
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 10px;
-    max-height: 200px;
-    overflow-y: auto;
-    margin-top: 10px;
-}
-.image-item-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 100%; /* 1:1 Aspect Ratio */
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-.image-item-wrapper:hover {
-    transform: scale(1.05);
-    border-color: #007BFF;
-    z-index: 10;
-}
-.image-thumbnail {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.image-actions {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    justify-content: space-around;
-    padding: 5px 0;
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-.image-item-wrapper:hover .image-actions {
-    opacity: 1;
-}
-.img-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 12px;
-    cursor: pointer;
-}
-.img-btn:hover { color: #ffeb3b; }
-.img-btn.del:hover { color: #ff6b6b; }
-
 .action-btn {
     padding: 8px 15px;
     border: none;
@@ -445,16 +380,6 @@ body, html {
 
 .close-btn:hover {
     background-color: #5a6268;
-}
-
-/* [추가] 크레딧 스타일 */
-.credits {
-    text-align: center;
-    font-size: 10px;
-    color: #aaa;
-    margin-top: 20px;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
 }
 
 /* 반응형 디자인: 모바일 환경 */
