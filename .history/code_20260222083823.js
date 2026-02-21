@@ -4,11 +4,7 @@
 // [중요] 구글 클라우드 콘솔(Google Cloud Console)에서 발급받은 클라이언트 ID를 입력하세요.
 // 또한, 구글 콘솔의 "승인된 자바스크립트 출처(Authorized JavaScript origins)"에 
 // Cloudflare 터널로 연결되는 도메인 주소(예: https://my-tunnel.trycloudflare.com)를 꼭 추가해야 합니다!
-
-
-// 구글 클라우드 콘솔 -> API 및 서비스 -> 왼쪽 탭에서 라이브러리 -> 구글 드라이브 API 사용 -> OAuth 동의화면 -> 클라이언트 -> 승인된 자바스크립트 원본에 https://home.blleaf.kr 추가 -> 만들고 나온 클라이언트 ID 하단에 입력.
-// OAuth 동의화면에서 대상 들어가서 "앱 게시"를 무조건 눌러서 테스트 단계에서 프로덕션 단계로 만들것!
-const GOOGLE_CLIENT_ID = "YOUR_CLIENT_ID.apps.googleusercontent.com"; 
+const GOOGLE_CLIENT_ID = "845786845269-fs79q6dv7rt06tgp8os731g2lvnd3j9s.apps.googleusercontent.com"; 
 
 let accessToken = null;
 let tokenClient;
